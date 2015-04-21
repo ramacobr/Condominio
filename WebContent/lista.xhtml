@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<p:growl id="msgs" showDetail="true" />
+<h:form>
+<p:dataTable id="user" var="user" value="#{UserController.users}" resizableColumns="true" liveResize="true" sort="multiple">
+	<p:ajax event="colResize" listener="#{UserController.onResize}" />
+	<f:facet name="header">
+        Lista de usuários
+        <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+        <p:columnToggler datasource="user" trigger="toggler" />
+    </f:facet>
+    <p:column headerText="Id" sortBy="#{user.id}" filterBy="#{user.id}">
+        <h:outputText value="#{user.id}" />
+    </p:column>
+    <p:column headerText="name" sortBy="#{user.name}" filterBy="#{user.name}">
+        <h:outputText value="#{user.name}" />
+    </p:column>
+    <p:column headerText="login" sortBy="#{user.login}" filterBy="#{user.login}">
+        <h:outputText value="#{user.login}" />
+    </p:column>
+ </p:dataTable>
+</h:form>
+</body> 
+</html>
